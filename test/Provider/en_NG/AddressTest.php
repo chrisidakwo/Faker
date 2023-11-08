@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Faker\Provider\en_NG;
+namespace Faker\Test\Provider\en_NG;
 
+use Faker\Provider\en_NG\Address;
+use Faker\Provider\en_NG\Person;
 use Faker\Test\TestCase;
 
 /**
@@ -17,17 +19,34 @@ final class AddressTest extends TestCase
 
         self::assertNotEmpty($postcode);
         self::assertIsString($postcode);
+        self::assertEquals(6, strlen($postcode));
+    }
+
+    public function testStreetNameIsAValidString(): void
+    {
+        $streetName = $this->faker->streetName();
+
+        self::assertNotEmpty($streetName);
+        self::assertIsString($streetName);
+    }
+
+    public function testCityNameIsAValidString(): void
+    {
+        $city = $this->faker->city();
+
+        self::assertNotEmpty($city);
+        self::assertIsString($city);
     }
 
     /**
-     * Test the name of the Nigerian State/County
+     * Test the name of the Nigerian State
      */
-    public function testCountyIsAValidString(): void
+    public function testStateIsAValidString(): void
     {
-        $county = $this->faker->county;
+        $state = $this->faker->state();
 
-        self::assertNotEmpty($county);
-        self::assertIsString($county);
+        self::assertNotEmpty($state);
+        self::assertIsString($state);
     }
 
     /**
@@ -35,7 +54,7 @@ final class AddressTest extends TestCase
      */
     public function testRegionIsAValidString(): void
     {
-        $region = $this->faker->region;
+        $region = $this->faker->region();
 
         self::assertNotEmpty($region);
         self::assertIsString($region);
@@ -44,5 +63,7 @@ final class AddressTest extends TestCase
     protected function getProviders(): iterable
     {
         yield new Address($this->faker);
+
+        yield new Person($this->faker);
     }
 }

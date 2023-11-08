@@ -4,14 +4,30 @@ namespace Faker\Provider\en_NG;
 
 class Address extends \Faker\Provider\Address
 {
-    protected static $postcode = ['#####', '## ###'];
+    protected static $citySuffix = [];
 
-    private static $county = [
-        'Abuja', 'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra',
+    protected static $streetPrefix = ['Chief', 'Dr.', 'Alhaji', 'General', 'Bishop', 'Rev.'];
+
+    protected static $streetSuffix = ['Street', 'Avenue', 'Close', 'Boulevard', 'Way'];
+
+    protected static $postcode = ['######'];
+
+    protected static $cityFormats = [
+        '{{cityName}}'
+    ];
+
+    protected static $streetNameFormats = [
+        '{{lastName}} {{streetSuffix}}',
+        '{{streetPrefix}} {{lastName}} {{streetSuffix}}',
+    ];
+
+    private static $state = [
+        'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra',
         'Bauchi', 'Bayelsa', 'Benue', 'Borno',
         'Cross River',
         'Delta',
         'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'Gombe',
+        'Federal Capital Territory',
         'Imo', 'Jigawa',
         'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara',
         'Lagos',
@@ -53,46 +69,77 @@ class Address extends \Faker\Provider\Address
         'Zambia', 'Zimbabwe',
     ];
 
-    private static $regions = [
-        'Abakaliki', 'Abeokuta', 'Akure', 'Asaba', 'Awka',
-        'Bauchi',
-        'Calabar', 'City',
-        'Damaturu', 'Dutse',
-        'Ekiti', 'Enugu',
-        'Gombe', 'Gusau',
-        'Ibadan', 'Ikeja', 'Ilorin',
-        'Jalingo', 'Jos',
-        'Kaduna', 'Kano', 'Katsina', 'Kebbi',
-        'Lafia', 'Lokoja',
-        'Maiduguri', 'Makurdi', 'Minna',
-        'Oshogbo', 'Owerri',
-        'Port-Harcourt',
-        'Sokoto',
-        'Umuahia', 'Uyo',
+    private static $cityName = [
+        'Aba', 'Abakaliki', 'Abeokuta', 'Abuja', 'Ado Ekiti', 'Akure', 'Arochukwu', 'Asaba', 'Awka', 'Azare',
+        'Badagry', 'Bama', 'Bauchi', 'Benin', 'Bida', 'Birnin Kebbi', 'Biu', 'Bonny Island', 'Brass', 'Bukuru', 'Buguma', 'Burutu', 'Bwari',
+        'Calabar',
+        'Damaturu', 'Deba Habe', 'Degema', 'Dikwa', 'Dutse',
+        'Effom-Alaiye', 'Ekiti', 'Eleme', 'Enugu', 'Epe',
+        'Garki', 'Gashua', 'Gboko', 'Gombe', 'Gusau', 'Gwagwalada',
+        'Ibadan', 'Idah', 'Ijebu-Ode', 'Ikare', 'Ikeja', 'Ikorodu', 'Ikot Abasi', 'Ikot Ekpene', 'Ilaro', 'Ile-Ife', 'Ilesa', 'Ilorin',
+        'Jalingo', "Jama'are", 'Jebba', 'Jimeta', 'Jos',
+        'Kabba', 'Kaduna', 'Kano', 'Katagum', 'Katsina', 'Kaura Namoda', 'Kebbi', 'Keffi', 'Koko', 'Kontagora', 'Kukawa', 'Kuje', 'Kwali',
+        'Lafia', 'Lapai', 'Lekki', 'Lokoja',
+        'Maiduguri', 'Makurdi', 'Mubi', 'Minna', 'Misau', 'Mushin',
+        'Nsukka', 'Numan',
+        'Obafemi-Owode', 'Oka-Akoko', 'Okene', 'Okrika', 'Okpoko', 'Ogbomosho', 'Ogoja', 'Ondo', 'Onitsha', 'Oron', 'Oshogbo', 'Otukpo', 'Owerri', 'Owo',
+        'Port-Harcourt', 'Pategi',
+        'Sagamu', 'Sapele', 'Sokoto', 'Suleja',
+        'Ugep', 'Ughelli', 'Umuahia', 'Uromi', 'Uyo',
+        'Victoria Island', 'Vom',
+        'Warri', 'Wase',
         'Yenagoa', 'Yola',
+        'Zaria',
+    ];
+
+    private static $region = [
+        'North-Central', 'North-East', 'North-West',
+        'South-East', 'South-South', 'South-West',
     ];
 
     /**
-     * Randomly returns a Nigerian state or county.
-     *
-     * @example 'Lagos'
+     * @example 'Chief'
      *
      * @return string
      */
-    public static function county()
+    public static function streetPrefix()
     {
-        return static::randomElement(static::$county);
+        return static::randomElement(static::$streetPrefix);
     }
 
     /**
-     * Randomly returns a Nigerian region of a state.
+     * Randomly returns a Nigerian city.
      *
      * @example 'Ikeja'
      *
      * @return string
      */
+    public static function cityName()
+    {
+        return static::randomElement(static::$cityName);
+    }
+
+    /**
+     * Randomly returns a Nigerian state.
+     *
+     * @example 'Lagos'
+     *
+     * @return string
+     */
+    public static function state()
+    {
+        return static::randomElement(static::$state);
+    }
+
+    /**
+     * Randomly returns a Nigerian region.
+     *
+     * @example 'South-South'
+     *
+     * @return string
+     */
     public static function region()
     {
-        return static::randomElement(static::$regions);
+        return static::randomElement(static::$region);
     }
 }
