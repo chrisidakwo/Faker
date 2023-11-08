@@ -13,7 +13,7 @@ class Address extends \Faker\Provider\Address
     protected static $postcode = ['######'];
 
     protected static $cityFormats = [
-        '{{cityName}}'
+        '{{cityName}}',
     ];
 
     protected static $streetNameFormats = [
