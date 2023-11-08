@@ -120,6 +120,16 @@ class Address extends \Faker\Provider\Address
     }
 
     /**
+     * Alias for <code>self::state()</code>
+     *
+     * @return string
+     */
+    public function county()
+    {
+        return self::state();
+    }
+
+    /**
      * Randomly returns a Nigerian state.
      *
      * @example 'Lagos'
