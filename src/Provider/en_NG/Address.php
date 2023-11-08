@@ -21,7 +21,7 @@ class Address extends \Faker\Provider\Address
         '{{streetPrefix}} {{lastName}} {{streetSuffix}}',
     ];
 
-    private static $state = [
+    protected static $state = [
         'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra',
         'Bauchi', 'Bayelsa', 'Benue', 'Borno',
         'Cross River',
@@ -69,7 +69,7 @@ class Address extends \Faker\Provider\Address
         'Zambia', 'Zimbabwe',
     ];
 
-    private static $cityName = [
+    protected static $cityName = [
         'Aba', 'Abakaliki', 'Abeokuta', 'Abuja', 'Ado Ekiti', 'Akure', 'Arochukwu', 'Asaba', 'Awka', 'Azare',
         'Badagry', 'Bama', 'Bauchi', 'Benin', 'Bida', 'Birnin Kebbi', 'Biu', 'Bonny Island', 'Brass', 'Bukuru', 'Buguma', 'Burutu', 'Bwari',
         'Calabar',
@@ -92,7 +92,7 @@ class Address extends \Faker\Provider\Address
         'Zaria',
     ];
 
-    private static $region = [
+    protected static $region = [
         'North-Central', 'North-East', 'North-West',
         'South-East', 'South-South', 'South-West',
     ];
@@ -124,7 +124,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public function county()
+    public static function county()
     {
         return self::state();
     }
